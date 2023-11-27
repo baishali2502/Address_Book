@@ -239,4 +239,72 @@ class AddressBook
 			}
 			return editted;
 		}
+		/*
+		 * @desc:This function deletes an already existing contact
+		 * 
+		 * @params:firstname & lastname of already existing contact
+		 * 
+		 * @returns:the deleted contact
+		 */
+		contact_node delete(String firstname,String lastname)
+		{
+			contact_node deleted_node = null;
+			//linked-list is empty
+			if(head==null)
+				return null;
+			size--;
+			//if head is the node to be deleted
+			if(head.firstname.equals(firstname) && head.lastname.equals(lastname))
+			{
+				deleted_node = head;
+				head = head.next;
+				return deleted_node;
+			}
+			//linked-list is not empty & head is not the node to be deleted
+			contact_node temp = head.next; // we start checking from 2nd node 
+			contact_node prev = head;
+			while(temp!=null)
+			{
+				String first = temp.firstname;
+				String last = temp.lastname;
+				if(first.equals(firstname) && last.equals(lastname)) {
+					deleted_node = temp;
+					prev.next = temp.next;
+					return deleted_node;
+				}
+				temp = temp.next;
+				prev = prev.next;
+			}
+			
+			return null;
+		}
+
+		/*
+		 * @desc:This function displays all contacts in the address-book
+		 * 
+		 * @params:none
+		 * 
+		 * @returns:void
+		 */
+		void print()
+		{
+			contact_node temp = head;
+			int count = 1;
+			while(temp!=null)
+			{
+				System.out.println("\nContact - "+count+" :- ");
+				System.out.println("\nFirstname :"+temp.firstname);
+				System.out.println("Lastname :"+temp.lastname);
+				System.out.println("Address :"+temp.address);
+				System.out.println("City :"+temp.city);
+				System.out.println("State :"+temp.state);
+				System.out.println("Zip :"+temp.zip);
+				System.out.println("Phone no. :"+temp.phone);
+				System.out.println("Email :"+temp.email);
+				
+				temp=temp.next;
+				count++;
+			}
+			System.out.println();
+		}
 }
