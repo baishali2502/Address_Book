@@ -140,4 +140,24 @@ class AddressBook
 				
 		return c;
 	}
+	 /*
+		 * @desc:This function inserts new contact
+		 * 
+		 * @params: the new contact to be added
+		 * 
+		 * @returns: void
+		 */
+		void insert()
+		{
+			contact_node newcontact = create();
+			if(head==null) {
+				head = newcontact;
+			}
+			else
+			{
+				newcontact.next = head;
+				head = newcontact;
+			}
+			size++;
+		}
 }
